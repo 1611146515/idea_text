@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ColuMapper">
+
+    <insert id="insert" parameterType="com.example.demo.entity.Colu" >
+        insert into colu (name,parent_id,order_num,statu) values ('${name}','${parent_id}','${order_num}','${statu}');
+    </insert>
+
+    <!-- 关联删除 -->
+    <delete id="delete_content" parameterType="Integer">
+        delete from content where column_id = #{column_id}
+    </delete>
+
+    <delete id="delete" parameterType="Integer">
+        delete from colu where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.example.demo.entity.Colu">
+        update colu set name = '${name}',parent_id = '${parent_id}',order_num = '${order_num}',statu = #{statu} where id = #{id}
+    </update>
+
+    <select id="select_data" resultType="com.example.demo.entity.Colu">
+        select * from colu order by order_num asc;
+    </select>
+
+</mapper>

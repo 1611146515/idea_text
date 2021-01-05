@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- 导入名称空间 -->
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<center>
+    <!-- 获取session域对象的行内写法 -->
+    <font color="aqua" size="5">欢迎!!!  <font color="red" size="3">[[${session.username}]]</font></font>             <hr/><br/>
+
+    <table border="1" rules="all" align="center" cellpadding="10">
+        <caption><font color="red">栏目</font></caption>
+        <tr>
+            <th>id</th>
+            <th>名称</th>
+            <th>父级id</th>
+            <th>排序指标</th>
+            <th>是否可编辑</th>
+            <th>增（栏目）</th>
+            <th>删</th>
+            <th>改</th>
+            <th>增（内容）</th>
+        </tr>
+        <tr align="center" th:each="Entry,Stat:${colu}">
+            <th th:text="${Entry.getId()}"></th>
+            <th th:text="${Entry.getName()}"></th>
+            <td th:text="${Entry.getParent_id()}"></td>
+            <td th:text="${Entry.getOrder_num()}"></td>
+            <th th:text="${Entry.getStatu()}"></th>
+            <th><a th:href="@{'./insert_col?id='+${Entry.getId()}+'&statu='+${Entry.getStatu()}}" th:text="添加父级id为+${Entry.getId()}+的数据"></a></th>
+            <th><a th:href="@{'./delete_col?id='+${Entry.getId()}+'&statu='+${Entry.getStatu()}}" th:text="删除id为+${Entry.getId()}+的数据"></a></th>
+            <th><a th:href="@{'./update_col?id='+${Entry.getId()}+'&name='+${Entry.getName()}+'&parent_id='+
+                ${Entry.getParent_id()}+'&order_num='+${Entry.getOrder_num()}+'&statu='+${Entry.getStatu()}}" th:text="修改id为+${Entry.getId()}+的数据"></a></th>
+            <th><a th:href="@{'./insert_content?id='+${Entry.getId()}}" th:text="添加外键约束为+${Entry.getId()}+的数据"></a></th>
+        </tr>
+    </table>
+
+    <br/><br/>
+
+    <table border="1" rules="all" align="center" cellpadding="10">
+        <caption><font color="red">内容</font></caption>
+        <tr>
+            <th>id</th>
+            <th>外键</th>
+            <th>作者</th>
+            <th>内容</th>
+            <th>日期</th>
+            <th>删</th>
+            <th>改</th>
+        </tr>
+        <tr align="center" th:each="userEntry,userStat:${content}">
+            <th th:text="${userEntry.getId()}"></th>
+            <td th:text="${userEntry.getColumn_id()}"></td>
+            <td th:text="${userEntry.getAuthor()}"></td>
+            <td th:text="${userEntry.getText()}"></td>
+            <td th:text="${userEntry.getDa()}"></td>
+            <th><a th:href="@{'./delete_content?id='+${userEntry.getId()}}" th:text="删除id为+${userEntry.getId()}+的数据"></a></th>
+            <th><a th:href="@{'./update_content?id='+${userEntry.getId()}+'&column_id='+${userEntry.getColumn_id()}+'&author='+
+                ${userEntry.getAuthor()}+'&text='+${userEntry.getText()}+'&da='+${userEntry.getDa()}}" th:text="修改id为+${userEntry.getId()}+的数据"></a></th>
+        </tr>
+    </table>
+
+</center>
+
+</body>
+</html>

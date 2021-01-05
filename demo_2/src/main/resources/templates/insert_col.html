@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- 导入名称空间 -->
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加页面</title>
+</head>
+<body>
+
+<br/><br/><br/>
+
+<center>
+
+    <form action="/col" method="post">
+        <table border="1" rules="all" align="center" cellpadding="10">
+            <caption><font color="red">添加栏目</font></caption>
+            <tr>
+                <input type="hidden" th:name="parent_id" th:value="${id}">
+                <th>名称</th>
+                <th>排序指标（默认1）</th>
+                <th>是否编辑（默认1）</th>
+            </tr>
+            <tr>
+                <th><input type="text" name="name"></th>
+                <th><input type="text" name="order_num" value="1"></th>
+                <th><input type="text" name="statu" value="1"></th>
+            </tr>
+        </table>                                                                                              <br/>
+        <input type="submit" value="添加"/>
+    </form>
+
+</center>
+
+</body>
+</html>

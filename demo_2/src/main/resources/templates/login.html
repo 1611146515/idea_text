@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!-- 导入名称空间 -->
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <br/><br/><br/><br/>
+
+<center>
+
+    <form action="/welcome" method="POST">
+        <table border="1" rules="all" align="center" cellpadding="10">
+            <font color="red" th:text="${msg}"></font>                                  <!-- 用于接收各种错误信息 -->
+            <caption><h3 th:text="#{log}">登录</h3></caption>
+            <tr>
+                <td th:text="#{username}">用户名</td>
+                <th><input type="text" name="username"/></th>
+            </tr>
+            <tr>
+                <td th:text="#{password}">密码</td>
+                <th><input type="password" name="password"/></th>
+            </tr>
+        </table>                                                                                <br/>
+        <button class="tijiao" th:text="#{sub}">提交</button>                                                 <br/>
+                                                                                                <br/>
+        <a href="./login?l=zh_CN">中文</a>                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="./login?l=en_US">English</a>
+    </form>
+
+</center>
+
+</body>
+</html>
