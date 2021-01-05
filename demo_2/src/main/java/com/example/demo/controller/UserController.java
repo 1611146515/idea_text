@@ -23,6 +23,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/text")
+    public String text(){
+        return "测试成功";
+    }
+
     @RequestMapping("/welcome")
     public String welcome(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session, Map<String,Object> map){
         if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)){
